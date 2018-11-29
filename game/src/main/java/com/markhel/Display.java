@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import static java.awt.Frame.MAXIMIZED_BOTH;
+
 public class Display implements ActionListener {
 
     public Display(String name) {
@@ -17,10 +19,10 @@ public class Display implements ActionListener {
 
     private void initComponents(String name) {
         window = new JFrame(name);
-        window.setSize(200, 100);
-        window.setVisible(true);
+        window.setSize(500, 500);
         window.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
+        Menu menu = new Menu();
+        window.setJMenuBar(menu.createMenu());
         JButton button = new JButton("Click me!");
         button.setVisible(true);
         button.setLocation(12, 12);
@@ -33,8 +35,12 @@ public class Display implements ActionListener {
             }
 
         });
+
         window.getContentPane().add(button);
         window.getContentPane().add(new JLabel("Hello"));
+        window.setVisible(true);
+        window.pack();
+        window.setExtendedState(MAXIMIZED_BOTH);
     }
 
     public void actionPerformed(ActionEvent action) {
